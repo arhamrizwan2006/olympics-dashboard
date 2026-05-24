@@ -38,7 +38,7 @@ col4.metric("Countries", f"{filtered_df['region'].nunique()}")
 st.markdown("---")
 
 # ── TABS ──
-tab1, tab2, tab3, tab4 = st.tabs(["📊 Overview", "🌍 Countries & Medals", "👤 Athletes", "🏆 Leaderboard"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["📊 Overview", "🌍 Countries & Medals", "👤 Athletes", "🏆 Leaderboard", "⭐ Bonus Charts"])
 
 # ── TAB 1 ──
 with tab1:
@@ -142,3 +142,19 @@ with tab4:
         lambda x: flag_map.get(x, '🏳️') + ' ' + x
     )
     st.dataframe(top_athletes, use_container_width=True, height=400)
+
+# ── TAB 5: BONUS CHARTS ──
+with tab5:
+    st.subheader("🫧 Bubble Chart — Countries by Age, Height & Medals")
+    st.pyplot(charts.bubble_chart(filtered_df))
+    st.caption("Bubble size represents total medals won. Top medal winning countries labeled.")
+
+    st.markdown("---")
+    st.subheader("📉 Funnel Chart — Olympic Participation to Gold")
+    st.pyplot(charts.funnel_chart(filtered_df))
+    st.caption("Shows how many athletes make it from participation all the way to winning Gold.")
+
+    st.markdown("---")
+    st.subheader("🔢 Pair Plot — Age, Height & Weight Relationships")
+    st.pyplot(charts.pair_plot(filtered_df))
+    st.caption("Shows relationships between all physical attributes, split by sex.")

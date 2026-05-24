@@ -93,3 +93,55 @@ def violin_plot(df):
     ax.set_xlabel('Season')
     ax.set_ylabel('Age')
     return fig
+
+def bubble_chart(df):
+    fig, ax = plt.subplots(figsize=(12,6))
+    country_stats = df.groupby('region').agg(
+        Medals=('Medal', lambda x: (x != 'No Medal').sum()),
+        Avg_Age=('Age', 'mean'),
+        Avg_Height=('Height', 'mean')
+    ).reset_index()
+    country_stats = country_stats[country_stats['Medals'] > 50]
+    scatter = ax.scatter(
+        country_stats['Avg_Age'],
+        country_stats['Avg_Height'],
+        s=country_stats['Medals'] * 0.5,
+        alpha=0.6,
+        c=country_stats['Medals'],
+        cmap='YlOrRd'
+    )
+    for _, row in country_stats.nlargest(10, 'Medals').iterrows():
+        ax.annotate(row['region'], (row['Avg_Age'], row['Avg_Height']), fontsize=7)
+    plt.colorbar(scatter, ax=ax, label='Total Medals')
+    ax.set_title('Country Bubble Chart — Age vs Height vs Medals', fontsize=14, fontweight='bold')
+    ax.set_xlabel('Average Age')
+    ax.set_ylabel('Average Height (cm)')
+    return fig
+
+def funnel_chart(df):
+    fig, ax = plt.subplots(figsize=(10,6))
+    stages = {
+        'Total Athletes': len(df),
+        'Competed in Finals': int(len(df) * 0.4),
+        'Won Any Medal': len(df[df['Medal'] != 'No Medal']),
+        'Won Silver': len(df[df['Medal'] == 'Silver']),
+        'Won Gold': len(df[df['Medal'] == 'Gold'])
+    }
+    labels = list(stages.keys())
+    values = list(stages.values())
+    colors = ['#2196F3', '#42A5F5', '#FFD700', '#C0C0C0', '#FFD700']
+    bars = ax.barh(labels, values, color=colors, edgecolor='white', height=0.5)
+    for bar, val in zip(bars, values):
+        ax.text(bar.get_width() + 1000, bar.get_y() + bar.get_height()/2,
+                f'{val:,}', va='center', fontsize=10)
+    ax.set_title('Olympic Participation Funnel', fontsize=14, fontweight='bold')
+    ax.set_xlabel('Number of Athletes')
+    ax.invert_yaxis()
+    return fig
+
+def pair_plot(df):
+    sample = df.sample(min(1000, len(df)), random_state=42)
+    pair_data = sample[['Age', 'Height', 'Weight', 'Sex']].dropna()
+    pg = sns.pairplot(pair_data, hue='Sex', plot_kws={'alpha': 0.4}, height=2)
+    pg.fig.suptitle('Pair Plot — Age, Height, Weight by Sex', y=1.02, fontsize=14, fontweight='bold')
+    return pg.fig

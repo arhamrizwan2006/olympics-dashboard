@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🏅 120 Years of Olympic Athletes Dashboard
 
 ## Course: Exploratory Data Analysis
@@ -71,3 +72,6 @@ dashboard_project/
 8. Area Chart - Sports Over Years
 9. Count Plot - Male vs Female
 10. Violin Plot - Age by Season
+=======
+# olympics-dashboard
+>>>>>>> b41d855a160e878ab815d32dde6e7b70a88c6cb6
