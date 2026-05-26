@@ -236,6 +236,16 @@ st.markdown("""
     color: #2d3748 !important;
     font-weight: 600 !important;
 }
+/* Fix search text visibility */
+[data-testid="stSidebar"] .stTextInput input {
+    color: white !important;
+    background: rgba(255,255,255,0.08) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    border-radius: 6px !important;
+}
+[data-testid="stSidebar"] .stTextInput input::placeholder {
+    color: rgba(255,255,255,0.3) !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
