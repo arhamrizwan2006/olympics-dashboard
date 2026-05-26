@@ -3,6 +3,21 @@ from filters import load_data, apply_filters
 import charts
 
 st.set_page_config(page_title="Olympics Explorer", page_icon="🏅", layout="wide")
+st.markdown("""
+<style>
+/* Fix all input and select text color */
+input, textarea, [data-baseweb="select"] * {
+    color: black !important;
+}
+[data-baseweb="select"] div {
+    color: black !important;
+    background-color: white !important;
+}
+[data-testid="stSidebar"] [data-baseweb="select"] div {
+    color: black !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 st.markdown("""
 <style>
@@ -257,7 +272,7 @@ df = get_data()
 
 # ── SIDEBAR ──
 with st.sidebar:
-    st.markdown("### ⚙️ Filter Data")
+    st.markdown("### Filter Data")
     season = st.selectbox("Season", ['All', 'Summer', 'Winter'])
     year_range = st.slider("Year Range",
         int(df['Year'].min()), int(df['Year'].max()),
@@ -266,9 +281,18 @@ with st.sidebar:
     sports = st.multiselect("Sport",
         sorted(df['Sport'].unique()),
         placeholder="All sports")
-    search = st.text_input("Search Athlete")
+    search = st.text_input("Search Athlete", placeholder="Type name...")
+    st.markdown("""
+<style>
+input[type="text"] {
+    color: white !important;
+    caret-color: white !important;
+    background-color: rgba(255,255,255,0.1) !important;
+}
+</style>
+""", unsafe_allow_html=True)
     st.markdown("---")
-    if st.button("↺  Reset All Filters"):
+    if st.button("Reset All Filters"):
         st.rerun()
 
 filtered_df = apply_filters(df, season, year_range, sex, sports, search)
