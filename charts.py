@@ -4,11 +4,13 @@ import seaborn as sns
 def pie_chart(df):
     fig, ax = plt.subplots(figsize=(7,7))
     medal_counts = df[df['Medal'] != 'No Medal']['Medal'].value_counts()
+    medal_counts = medal_counts.reindex(['Gold', 'Silver', 'Bronze'])
+    colors = ['#FFD700', '#C0C0C0', '#CD7F32']
     if medal_counts.empty:
         ax.text(0.5, 0.5, 'No data', ha='center')
     else:
         ax.pie(medal_counts, labels=medal_counts.index, autopct='%1.1f%%',
-               colors=['gold', 'silver', '#cd7f32'], startangle=90)
+               colors=colors, startangle=90)
     ax.set_title('Olympic Medal Distribution', fontsize=14, fontweight='bold')
     return fig
 
@@ -113,7 +115,7 @@ def bubble_chart(df):
     for _, row in country_stats.nlargest(10, 'Medals').iterrows():
         ax.annotate(row['region'], (row['Avg_Age'], row['Avg_Height']), fontsize=7)
     plt.colorbar(scatter, ax=ax, label='Total Medals')
-    ax.set_title('Country Bubble Chart — Age vs Height vs Medals', fontsize=14, fontweight='bold')
+    ax.set_title('Country Bubble Chart - Age vs Height vs Medals', fontsize=14, fontweight='bold')
     ax.set_xlabel('Average Age')
     ax.set_ylabel('Average Height (cm)')
     return fig
@@ -143,5 +145,5 @@ def pair_plot(df):
     sample = df.sample(min(1000, len(df)), random_state=42)
     pair_data = sample[['Age', 'Height', 'Weight', 'Sex']].dropna()
     pg = sns.pairplot(pair_data, hue='Sex', plot_kws={'alpha': 0.4}, height=2)
-    pg.fig.suptitle('Pair Plot — Age, Height, Weight by Sex', y=1.02, fontsize=14, fontweight='bold')
+    pg.fig.suptitle('Pair Plot - Age, Height and Weight by Sex', y=1.02, fontsize=14, fontweight='bold')
     return pg.fig
