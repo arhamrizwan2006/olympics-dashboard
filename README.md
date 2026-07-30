@@ -1,73 +1,143 @@
-# 🏅 120 Years of Olympic Athletes Dashboard
+# 🏅 Olympics Data Analysis Dashboard
 
-**Course:** Exploratory Data Analysis  
-**Instructor:** Ali Hassan Sherazi
+> 120 years of Olympic history visualized with interactive filters  
+> **Live:** https://olympics-dashboard-arham.streamlit.app/  
+> **Data:** 1896–2016 | **Framework:** Streamlit | **Built With:** Python
 
-🔗 **Live Demo:** [olympics-dashboard-arham.streamlit.app](https://olympics-dashboard-arham.streamlit.app)
+![Badge](https://img.shields.io/badge/Streamlit-Live%20App-FF4B4B?style=flat-square)
+![Badge](https://img.shields.io/badge/Data-120%20Years-4CAF50?style=flat-square)
+![Badge](https://img.shields.io/badge/Visualizations-10%2B%20Charts-2196F3?style=flat-square)
 
-## Project Overview
-An interactive data visualization dashboard analyzing 120 years of Olympic history 
-(1896–2016), covering athletes, medals, sports, and countries. Built with Python, 
-Pandas, Seaborn, Matplotlib, and deployed live using Streamlit.
+---
 
-## Dataset
-- `athlete_events.csv` — main dataset with athlete information
-- `noc_regions.csv` — country/region mapping
+## 🎯 What It Shows
 
-## Tech Stack
-| Tool | Purpose |
-|---|---|
-| Python | Core language |
-| Pandas / NumPy | Data cleaning and analysis |
-| Matplotlib / Seaborn | Static visualizations |
-| Streamlit | Interactive dashboard & deployment |
-
-## How to Run Locally
 ```
-pip install pandas numpy matplotlib seaborn streamlit
-cd Downloads\Dashboard
-python -m streamlit run app.py
+Raw Olympics Data (1896–2016)
+         ↓
+   [Clean & Process]
+         ↓
+   [10+ Interactive Charts]
+         ↓
+   [6 Dynamic Filters]
+         ↓
+Live Dashboard
 ```
-Dashboard opens automatically in browser at `localhost:8501`
 
-## Key Insights
-- 271,116 total athlete records across 120 years
-- 213 countries participated in Olympic history
-- Average athlete age is 25.5 years
-- USA, Russia, and Germany are the top medal-winning countries
-- Male athletes outnumber female athletes historically
-- Summer Olympics has significantly more participants than Winter
-- Height and weight show a strong positive correlation
+Explore medal trends, athlete stats, country performance, and historical patterns across 13 Olympic Games.
 
-## Charts Included
-1. Pie Chart — Medal Distribution
-2. Histogram — Age Distribution
-3. Line Chart — Athletes Over Years
-4. Bar Chart — Top 10 Countries
-5. Scatter Plot — Height vs Weight
-6. Box Plot — Age by Medal Type
-7. Heatmap — Correlation Matrix
-8. Area Chart — Sports Over Years
-9. Count Plot — Male vs Female
-10. Violin Plot — Age by Season
+---
 
-## Project Structure
+## 📊 Features
+
+- **10+ Visualizations:** Medal counts, athlete distribution, country dominance, gender trends
+- **6 Interactive Filters:** Country, sport, year range, gender, medal type
+- **Live Data Exploration:** All charts update instantly based on filters
+- **Responsive Design:** Works on desktop, tablet, mobile
+
+---
+
+## 📈 Key Charts
+
+| Chart | Insight |
+|-------|---------|
+| **Medal Distribution** | Which countries dominate? |
+| **Sport Participation** | Most popular Olympic sports |
+| **Gender Trends** | Female athlete growth over time |
+| **Athlete Statistics** | Age, height, weight patterns |
+| **Country Performance** | Medal per capita analysis |
+
+---
+
+## 🚀 Access the Dashboard
+
+**Live:** [olympics-dashboard-arham.streamlit.app](https://olympics-dashboard-arham.streamlit.app/)
+
+No installation needed — view directly in browser. Filters update all charts in real-time.
+
+---
+
+## 💻 Local Setup
+
+```bash
+git clone https://github.com/arhamrizwan2006/olympics-dashboard.git
+cd olympics-dashboard
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run locally
+streamlit run app.py
 ```
-dashboard_project/
+
+**Open:** `http://localhost:8501`
+
+---
+
+## 📁 Structure
+
+```
+olympics-dashboard/
+├── app.py              (Main Streamlit app)
+├── charts.py           (Visualization functions)
+├── filters.py          (Filter logic)
 ├── data/
-│   ├── athlete_events.csv
-│   └── noc_regions.csv
+│   ├── athlete_events.csv      (Raw data)
+│   └── noc_regions.csv         (Country mappings)
 ├── notebooks/
-│   └── analysis.ipynb
-├── app.py
-├── charts.py
-├── filters.py
-├── requirements.txt
-└── README.md
+│   └── analysis.ipynb  (EDA & development)
+└── requirements.txt
 ```
 
-## What I Learned
-- Exploratory data analysis on a large historical dataset
-- Building interactive filters and dashboards with Streamlit
-- Choosing effective chart types for different kinds of insights
-- Deploying a Python data app publicly via Streamlit Cloud
+---
+
+## 💡 Tech Stack
+
+| Component | Purpose |
+|-----------|---------|
+| **Streamlit** | Interactive web dashboard |
+| **Pandas** | Data processing |
+| **Seaborn/Matplotlib** | Visualizations |
+| **Python** | Backend logic |
+
+---
+
+## 🎨 Interactive Filters
+
+```
+┌─ Country ────────┐
+│ ○ All / Select   │
+├─ Sport ──────────┤
+│ ○ All / Choose   │
+├─ Year Range ─────┤
+│ 1896 ←→ 2016    │
+├─ Gender ─────────┤
+│ ○ All/M/F        │
+└─ Medal Type ─────┘
+   ↓
+All charts update
+instantly ⚡
+```
+
+---
+
+## 📊 Sample Insights
+
+- **🥇 Dominance:** USA leads historically, but China rising
+- **📈 Growth:** Female participation increases each Olympics
+- **🏃 Sports:** Track & field, swimming most represented
+- **🌍 Diversity:** 200+ nations participated across games
+
+---
+
+## 🔧 Data Processing
+
+- **Dataset:** Kaggle Olympics 1896–2016
+- **Cleaning:** Handle missing values, standardize country names
+- **Aggregation:** Medal counts, athlete statistics
+- **Caching:** Streamlit caches for fast interactions
+
+---
+
+**Repo:** [github.com/arhamrizwan2006/olympics-dashboard](https://github.com/arhamrizwan2006/olympics-dashboard)  
+**Deployed:** Streamlit Cloud (Auto-updated from main branch)
